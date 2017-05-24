@@ -1,0 +1,55 @@
+{
+  "name": "bell-apps",
+  "description": "A collection of Apps for the BeLL",
+  "scripts": {
+    "test": "ts-node ./node_modules/tape/bin/tape src/**/*.test.ts | tap-spec",
+    "watch": "node app.js"
+  },
+  "version": "0.0.1",
+  "author": "Paul Albert <paul.r.albert@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/open-learning-exchange/bell-apps.git"
+  },
+  "dependencies": {
+    "@angular/common": "^4.1.0",
+    "@angular/compiler": "^4.1.0",
+    "@angular/core": "^4.1.0",
+    "@angular/forms": "^4.1.0",
+    "@angular/http": "^4.1.0",
+    "@angular/platform-browser": "^4.1.0",
+    "@angular/platform-browser-dynamic": "^4.1.0",
+    "@angular/router": "^4.1.0",
+    "co": ">= 4.6.0",
+    "commander": "2.5.0",
+    "cookie": ">= 0.3.1",
+    "core-js": "^2.4.1",
+    "couchapp": ">= 0.10.0",
+    "express": "^4.15.3",
+    "nano": "6.0.1",
+    "request": ">= 2.27.0",
+    "rxjs": "5.0.1",
+    "underscore": ">= 1.5.2",
+    "zone.js": "^0.8.10"
+  },
+  "engines": {
+    "node": ">= 6.9.2"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.18",
+    "@types/tape": "^4.2.30",
+    "angular-router-loader": "^0.6.0",
+    "css-loader": "^0.28.1",
+    "html-webpack-plugin": "^2.28.0",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.17.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.3",
+    "ts-loader": "^2.0.3",
+    "ts-node": "^3.0.4",
+    "tslint": "^5.2.0",
+    "tslint-loader": "^3.5.3",
+    "typescript": "~2.1.0",
+    "webpack": "^2.5.1"
+  }
+}
