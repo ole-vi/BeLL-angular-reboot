@@ -8,6 +8,13 @@ First, make sure you have [CouchDB 2.0](http://couchdb.apache.org/) and [NodeJS]
 
 Once CouchDB is installed, run the `curl` commands found at the bottom of [this page](http://docs.couchdb.org/en/latest/install/index.html) to set up system databases. Then go into its dashboard at `http://127.0.0.1:5984/_utils` and enable CORS by clicking __Configuration__ -> __CORS__, click the __Enable CORS__ button and add `http://localhost:3000` and/or `http://127.0.0.1:3000` to the list.
 
+```
+curl -X PUT http://127.0.0.1:5984/_users
+curl -X PUT http://127.0.0.1:5984/_replicator
+curl -X PUT http://127.0.0.1:5984/_global_changes
+
+```
+
 Then clone this repo and run `npm install` to install all dependencies.  There are two scripts of use for the command line, as well:
 
 `npm test`
