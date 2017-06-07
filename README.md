@@ -29,6 +29,7 @@ Currently project only includes a login/create user page with username & passwor
 
 ## TODOs
 
+* Create vagrant file for quick setup of dependencies, then create docker file
 * Incorporate SSL so site runs on HTTPS
 * Add Service Workers & PouchDB (see [this repo](https://github.com/nolanlawson/worker-pouch)) for offline support
 * Add page after login
