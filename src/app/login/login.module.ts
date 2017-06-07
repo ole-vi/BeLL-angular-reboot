@@ -6,7 +6,7 @@ import { LoginComponent } from './login.component';
 import { NewLoginComponent } from './newLogin.component';
 import { LoginFormComponent } from './login-form.component';
 
-import { LoginRouterModule } from './login-router.module.ts'
+import { LoginRouterModule } from './login-router.module'
 
 @NgModule({
   imports: [

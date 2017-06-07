@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { CouchService } from '../shared/couchdb.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'login-form',
@@ -21,7 +22,8 @@ export class LoginFormComponent {
     message = '';
     
     constructor(
-        private couchService: CouchService
+        private couchService: CouchService,
+        private router: Router
     ) {}
     
     onSubmit() {
@@ -32,10 +34,17 @@ export class LoginFormComponent {
         }
     }
     
+    reRoute() {
+        this.router.navigate(['/'], {});
+    }
+    
     createUser() {
         if(this.model.password === this.model.repeatPassword) {
             this.couchService.put('_users/org.couchdb.user:' + this.model.name, {'name': this.model.name, 'password': this.model.password, 'roles': [], 'type': 'user'})
-                .then((data) => this.message = 'User created: ' + data.id.replace('org.couchdb.user:',''), (error) => this.message = '');
+                .then((data) => {
+                    this.message = 'User created: ' + data.id.replace('org.couchdb.user:','');
+                    this.reRoute();
+                }, (error) => this.message = '');
         } else {
             this.message = 'Passwords do not match';
         }
@@ -45,6 +54,7 @@ export class LoginFormComponent {
         this.couchService.post('_session', {'name':this.model.name, 'password': this.model.password})
             .then((data) => { 
                 this.message = 'Hi, ' + data.name + '!';
+                this.reRoute();
             },(error) => this.message = 'Username and/or password do not match');
     }
     

@@ -4,9 +4,10 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
-import { AppRoutingModule } from './app-router.module.ts';
+import { AppRoutingModule } from './app-router.module';
 
 import { CouchService } from './shared/couchdb.service';
+import { AuthService } from './shared/auth-guard.service';
 
 @NgModule({
   imports: [
@@ -15,7 +16,9 @@ import { CouchService } from './shared/couchdb.service';
   declarations: [
     AppComponent
   ],
-  providers: [ CouchService ],
+  providers: [ 
+    CouchService, AuthService
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
