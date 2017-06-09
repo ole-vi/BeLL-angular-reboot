@@ -10,7 +10,7 @@ export class AuthService {
 
     private checkUser(): Promise<any> {
         return this.couchService
-            .get('/_session');
+            .get('_session');
     }
     
     canActivate(route: ActivatedRouteSnapshot, state:RouterStateSnapshot): Promise<any> {
