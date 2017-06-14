@@ -2,7 +2,7 @@ var path = require('path'),
     webpack = require('webpack'),
     HtmlWebpackPlugin = require('html-webpack-plugin');
     
-var tsLintOpts = require('./tslint.config.js');
+var tsLintOpts = require('./tslint.json');
 
 /* Remove this for now, added because test files are linted but they don't seem to be added to the final build
 // TS (or js) files to exclude
