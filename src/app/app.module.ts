@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-router.module';
 
 import { CouchService } from './shared/couchdb.service';
 import { AuthService } from './shared/auth-guard.service';
+import { UserService } from './shared/user.service';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { AuthService } from './shared/auth-guard.service';
     AppComponent
   ],
   providers: [ 
-    CouchService, AuthService
+    CouchService, AuthService, UserService
   ],
   bootstrap: [ AppComponent ]
 })
