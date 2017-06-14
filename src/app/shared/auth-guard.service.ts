@@ -10,15 +10,15 @@ export class AuthService {
 
     private checkUser(): Promise<any> {
         return this.couchService
-            .get('_session');
+            .get('_session',{ withCredentials:true });
     }
     
     canActivate(route: ActivatedRouteSnapshot, state:RouterStateSnapshot): Promise<any> {
         return this.checkUser().then((res:any) => {
-            if(res.ok) {
+            if(res.userCtx.name) {
                 return true;
             }
-            this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});
+            this.router.navigate(['/login'], {queryParams: {returnUrl: state.url},replaceUrl:true});
             return false;
         });
     }
