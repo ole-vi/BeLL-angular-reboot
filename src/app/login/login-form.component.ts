@@ -51,8 +51,9 @@ export class LoginFormComponent {
     }
     
     login() {
-        this.couchService.post('_session', {'name':this.model.name, 'password': this.model.password})
+        this.couchService.post('_session', {'name':this.model.name, 'password': this.model.password}, { withCredentials:true })
             .then((data) => { 
+                console.log(data);
                 this.message = 'Hi, ' + data.name + '!';
                 this.reRoute();
             },(error) => this.message = 'Username and/or password do not match');

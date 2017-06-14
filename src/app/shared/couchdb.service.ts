@@ -21,22 +21,24 @@ export class CouchService {
             .catch(this.handleError);
     }
     
-    post(db:string,data:any): Promise<any> {
+    post(db:string,data:any,opts?:any): Promise<any> {
         const url = this.baseUrl + db;
         const postData = data ? JSON.stringify(data) : '';
+        opts = Object.assign({},{headers:this.headers},opts) || {headers:this.headers};
         
         return this.http
-            .post(url,postData,{headers:this.headers})
+            .post(url,postData,opts)
             .toPromise()
             .then(this.handleRes)
             .catch(this.handleError);
     }
     
-    get(db:string): Promise<any> {
+    get(db:string,opts?:any): Promise<any> {
         const url = this.baseUrl + db;
+        opts = opts || {};
         
         return this.http
-            .get(url)
+            .get(url,opts)
             .toPromise()
             .then(this.handleRes)
             .catch(this.handleError);
