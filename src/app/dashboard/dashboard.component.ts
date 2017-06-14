@@ -1,24 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { CouchService } from '../shared/couchdb.service';
+import { UserService } from '../shared/user.service';
 
 @Component({
     template: `
         <div>Hi, {{name}}</div>
-        <ul>
-            <li *ngFor="let user of users">{{user.name}}</li>
-        </ul>
     `
 })
-export class DashboardComponent {
-    user = {};
-    users:any = [];
+export class DashboardComponent implements OnInit {
+    name = '';
+    roles:string[] = [];
     
     constructor(
-        private couchService: CouchService
+        private userService: UserService
     ) {}
     
-    
-
-    
+    ngOnInit() {
+        Object.assign(this,this.userService.get());
+    }
 }
