@@ -32,5 +32,8 @@ Currently project only includes a login/create user page with username & passwor
 * Create vagrant file for quick setup of dependencies, then create docker file
 * Incorporate SSL so site runs on HTTPS
 * Add Service Workers & PouchDB (see [this repo](https://github.com/nolanlawson/worker-pouch)) for offline support
-* Add page after login
+* Finish converting TAP tests to Karma for login component
+* Add e2e tests with Protractor or CodeceptJS
+* Add navigation component
+* Add user management component
 * Add some style or Bootstrap theme
