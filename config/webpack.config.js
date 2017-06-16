@@ -2,32 +2,15 @@ var path = require('path'),
     webpack = require('webpack'),
     HtmlWebpackPlugin = require('html-webpack-plugin');
     
-var tsLintOpts = {
-    configuration: {
-        rules: {
-            'no-import-side-effect':true,
-            'curly':true,
-            'forin':true,
-            'no-conditional-assignment':true,
-            'no-duplicate-variable':true,
-            'no-construct':true,
-            'no-empty':true,
-            'no-eval':true,
-            'no-switch-case-fall-through':true,
-            'typeof-compare':true,
-            'indent':[true,'spaces'],
-            'arrow-return-shorthand':true,
-            'prefer-switch': ['true',{'min-cases':3}]
-        }
-    }
-};
+var tsLintOpts = require('./tslint.json');
 
-
+/* Remove this for now, added because test files are linted but they don't seem to be added to the final build
 // TS (or js) files to exclude
 var excludeTs = [/(node_modules)/,'*.test'],
     testTs = function (modulePath) {
         return modulePath.endsWith('.ts') && !modulePath.endsWith('test.ts');
     };
+*/
 
 module.exports = {
     entry:{
@@ -36,25 +19,23 @@ module.exports = {
         'polyfills':'./src/polyfills.ts'
     },
     output:{
-        path:path.resolve(__dirname,'build/')
+        path:path.resolve(__dirname,'../build/')
     },
     module:{
         rules:[
             {
-                test: testTs,
+                test: /\.ts$/,
                 enforce: 'pre',
                 use:[
                     {loader: 'tslint-loader',options: tsLintOpts}
-                ],
-                exclude:excludeTs
+                ]
             },
             {
-                test:testTs,
+                test:/\.ts$/,
                 use:[
                     {loader:'ts-loader'},
                     {loader:'angular-router-loader'}
-                ],
-                exclude:excludeTs
+                ]
             },
             {
                 test:/\.s?css$/,

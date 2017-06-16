@@ -1,4 +1,7 @@
-import * as test from 'tape';
+
+
+// OLD TAPE TEST
+/*import * as test from 'tape';
 import '../../test-polyfills.ts';
 
 import { LoginModule } from './login.module';
@@ -66,4 +69,4 @@ test('Create user form should acknowledge mismatched passwords', (t) => {
     t.equal(comp.message,'Passwords do not match','Message shows passwords do not match');
     t.end();
     teardown();
-});
+});*/
