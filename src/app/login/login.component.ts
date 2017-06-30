@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
             <label>Username</label><input [(ngModel)]="model.name" placeholder="Enter username" name="name" />
             <label>Password</label><input [(ngModel)]="model.password" placeholder="Password" name="password" />
             <span *ngIf="createMode"><label>Repeat Password</label><input [(ngModel)]="model.repeatPassword" placeholder="Repeat Password" name="repeatPassword" /></span>
-            <a [routerLink]="createMode ? [''] : ['newuser']">{{ createMode ? 'Already have an account?' : 'Are you new?' }}</a>
+            <a [routerLink]="createMode ? ['/login'] : ['newuser']">{{ createMode ? 'Already have an account?' : 'Are you new?' }}</a>
             <button>{{ createMode ? 'Create User' : 'Login' }}</button>
         </form>
         <div id="login-status">{{message}}</div>
