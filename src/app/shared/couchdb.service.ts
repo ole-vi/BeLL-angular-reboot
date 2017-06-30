@@ -44,6 +44,17 @@ export class CouchService {
             .catch(this.handleError);
     }
     
+    delete(db:string,opts?:any): Promise<any> {
+        const url = this.baseUrl + db;
+        opts = opts || {};
+        
+        return this.http
+            .delete(url,opts)
+            .toPromise()
+            .then(this.handleRes)
+            .catch(this.handleError);
+    }
+    
     private handleRes = (res:any) => res.json();
     
     private handleError(error: any): Promise<any> {
