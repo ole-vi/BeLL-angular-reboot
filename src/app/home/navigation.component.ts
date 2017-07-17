@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
         <ul>
             <li *ngFor="let comp of components"><a [routerLink]="comp.link">{{comp.name}}</a></li>
         </ul>
-        <button class="km-logout" (click)="logoutClick()">Logout</button>
+        <button class="km-logout ole-btn cursor-pointer" (click)="logoutClick()">Logout</button>
     `
 })
 export class NavigationComponent {
@@ -20,7 +20,7 @@ export class NavigationComponent {
     ){}
 
     components = [
-        { link:'/', name:'Home' },
+        { link:'/', name:'Home' }
     ];
         
     logoutClick() {
