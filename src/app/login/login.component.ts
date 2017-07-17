@@ -3,15 +3,27 @@ import { Component } from '@angular/core';
 import { CouchService } from '../shared/couchdb.service';
 import { Router } from '@angular/router';
 
+require('./login.scss');
+
 @Component({
     template: `
-        <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-            <label>Username</label><input [(ngModel)]="model.name" placeholder="Enter username" name="name" />
-            <label>Password</label><input [(ngModel)]="model.password" placeholder="Password" name="password" />
-            <span *ngIf="createMode"><label>Repeat Password</label><input [(ngModel)]="model.repeatPassword" placeholder="Repeat Password" name="repeatPassword" /></span>
-            <a [routerLink]="createMode ? ['/login'] : ['newuser']">{{ createMode ? 'Already have an account?' : 'Are you new?' }}</a>
-            <button>{{ createMode ? 'Create User' : 'Login' }}</button>
-        </form>
+        <div class="ole-login">
+            <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+                <div>
+                    <label>Username</label><input [(ngModel)]="model.name" placeholder="Enter username" name="name" />
+                </div>
+                <div>
+                    <label>Password</label><input [(ngModel)]="model.password" placeholder="Password" name="password" />
+                </div>
+                <div *ngIf="createMode">
+                    <label>Repeat Password</label><input [(ngModel)]="model.repeatPassword" placeholder="Repeat Password" name="repeatPassword" />
+                </div>
+                <div>
+                    <a [routerLink]="createMode ? ['/login'] : ['newuser']">{{ createMode ? 'Already have an account?' : 'Are you new?' }}</a>
+                    <button class="ole-btn cursor-pointer">{{ createMode ? 'Create User' : 'Login' }}</button>
+                </div>
+            </form>
+        </div>
         <div id="login-status">{{message}}</div>
     `
 })

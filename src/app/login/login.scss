@@ -1,0 +1,18 @@
+@import '../variables';
+
+.ole-login {
+    
+    width:500px;
+    
+    form > div {
+        margin:8px 0;
+    }
+    
+    form > div > label {
+        display:inline-block;
+        width: 33%;
+        text-align:right;
+        margin-right:3px;
+    }
+    
+}

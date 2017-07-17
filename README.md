@@ -36,4 +36,3 @@ Currently project only includes a login/create user page with username & passwor
 * Add e2e tests with Protractor or CodeceptJS
 * Add navigation component
 * Add user management component
-* Add some style or Bootstrap theme
