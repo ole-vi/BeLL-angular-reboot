@@ -1,0 +1,28 @@
+@import '../variables';
+
+main-navigation {
+    
+    position:fixed;
+    top:$body-margin;
+    left:$body-margin;
+    width:200px;
+    
+    ul {
+        list-style-type:none;
+        margin:0;
+        padding:0;
+    }
+    
+    a {
+        text-decoration:none;
+        display:block;
+        padding:3px 0;
+        color:black;
+        margin-bottom:3px;
+    }
+    
+}
+
+main {
+    margin-left:200px;
+}
