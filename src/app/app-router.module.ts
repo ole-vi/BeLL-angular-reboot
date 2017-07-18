@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthService } from './shared/auth-guard.service';
 
 export const routes: Routes = [
-    { path:'',loadChildren:'./home/home.module#HomeModule', canActivate:[AuthService],pathMatch:'full' },
+    { path:'',loadChildren:'./home/home.module#HomeModule', canActivate:[AuthService] },
     { path:'login',loadChildren:'./login/login.module#LoginModule' }
 ];
 

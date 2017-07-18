@@ -20,7 +20,8 @@ export class NavigationComponent {
     ){}
 
     components = [
-        { link:'/', name:'Home' }
+        { link:'', name:'Home' },
+        { link:'users', name:'Users' }
     ];
         
     logoutClick() {

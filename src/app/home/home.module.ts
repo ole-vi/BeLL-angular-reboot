@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { NavigationComponent } from './navigation.component';
+import { UsersComponent } from '../users/users.component';
 
 import { HomeRouterModule } from './Home-router.module.ts'
 
@@ -12,7 +13,7 @@ import { HomeRouterModule } from './Home-router.module.ts'
     HomeRouterModule,CommonModule
   ],
   declarations: [
-    HomeComponent,DashboardComponent,NavigationComponent
+    HomeComponent,DashboardComponent,NavigationComponent,UsersComponent
   ]
 })
 export class HomeModule {}
