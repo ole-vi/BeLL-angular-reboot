@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { HomeComponent } from './home.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
@@ -10,7 +11,7 @@ import { HomeRouterModule } from './Home-router.module.ts'
 
 @NgModule({
   imports: [
-    HomeRouterModule,CommonModule
+    HomeRouterModule,CommonModule,FormsModule
   ],
   declarations: [
     HomeComponent,DashboardComponent,NavigationComponent,UsersComponent
