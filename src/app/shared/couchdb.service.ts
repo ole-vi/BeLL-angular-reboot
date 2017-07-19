@@ -10,12 +10,13 @@ export class CouchService {
     
     constructor(private http: Http) {}
     
-    put(db:string,data:any): Promise<any> {
+    put(db:string,data:any,opts?:any): Promise<any> {
         const url = this.baseUrl + db;
         const putData = data ? JSON.stringify(data) : '';
+        opts = Object.assign({},{headers:this.headers},opts) || {headers:this.headers};
         
         return this.http
-            .put(url,putData,{headers:this.headers})
+            .put(url,putData,opts)
             .toPromise()
             .then(this.handleRes)
             .catch(this.handleError);
