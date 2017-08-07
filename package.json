@@ -58,6 +58,7 @@
     "mock-browser": "^0.92.14",
     "null-loader": "^0.1.1",
     "protractor": "^5.1.2",
+    "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.17.0",
     "ts-loader": "^2.0.3",
