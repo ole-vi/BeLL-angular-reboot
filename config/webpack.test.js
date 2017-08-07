@@ -29,12 +29,12 @@ module.exports = {
                 loader: 'null-loader'
             },
             {
-                test: /\.css$/,
+                test: /\.s?css$/,
                 exclude: path.resolve(__dirname,'../src/app/'),
                 loader: 'null-loader'
             },
             {
-                test: /\.css$/,
+                test: /\.s?css$/,
                 include: path.resolve(__dirname,'../src/app/'),
                 loader: 'raw-loader'
             }
