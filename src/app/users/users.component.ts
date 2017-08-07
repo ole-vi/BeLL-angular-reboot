@@ -8,32 +8,34 @@ require("font-awesome-webpack");
 @Component({
     template: `
         <h1>Users</h1>
-        <form (ngSubmit)="roleSubmit(allUsers,selectedRole)" #rolesForm="ngForm">
-            <div>
-                <select [(ngModel)]="selectedRole" name="role">
-                    <option *ngFor="let role of roleList" [value]="role">{{role}}</option>
-                </select>
-                <button class="ole-btn cursor-pointer" type="submit">Add role to selected</button>
-            </div>
-        </form>
-        <table *ngIf="displayTable" class="ole-table">
-            <thead>
-                <td>User name</td>
-                <td>Roles</td>
-            </thead>
-            <tbody>
-                <tr *ngFor="let user of allUsers" [ngClass]="{'cursor-pointer':user._id,'hoverable':user._id,'selected':user.selected}" (click)="select(user)">
-                    <td>{{user.name}}</td>
-                    <td>
-                        <span *ngFor="let role of user.roles; index as i" [ngClass]="{'ole-pill':user._id}">
-                            {{role}}
-                            <i class="fa fa-times cursor-pointer" *ngIf="user._id" aria-hidden="true" (click)="deleteRole(user,index,$event)"></i>
-                        </span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div>{{message}}</div>
+        <div class="km-user-table" *ngIf="displayTable">
+            <form (ngSubmit)="roleSubmit(allUsers,selectedRole)" #rolesForm="ngForm">
+                <div>
+                    <select [(ngModel)]="selectedRole" name="role">
+                        <option *ngFor="let role of roleList" [value]="role">{{role}}</option>
+                    </select>
+                    <button class="ole-btn cursor-pointer" type="submit">Add role to selected</button>
+                </div>
+            </form>
+            <table class="ole-table">
+                <thead>
+                    <td>User name</td>
+                    <td>Roles</td>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of allUsers" [ngClass]="{'cursor-pointer':user._id,'hoverable':user._id,'selected':user.selected}" (click)="select(user)">
+                        <td>{{user.name}}</td>
+                        <td>
+                            <span *ngFor="let role of user.roles; index as i" [ngClass]="{'ole-pill':user._id}">
+                                {{role}}
+                                <i class="fa fa-times cursor-pointer" *ngIf="user._id" aria-hidden="true" (click)="deleteRole(user,index,$event)"></i>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="km-message">{{message}}</div>
     `
 })
 export class UsersComponent implements OnInit {
@@ -63,7 +65,7 @@ export class UsersComponent implements OnInit {
     ngOnInit() {
         Object.assign(this,this.userService.get());
         if(this.roles.indexOf('_admin') > -1) {
-            this.getUsers();
+            this.initializeData();
         } else {
             // A non-admin user cannot receive all user docs
             this.message = 'Access restricted to admins';
@@ -72,10 +74,18 @@ export class UsersComponent implements OnInit {
     }
     
     getUsers() {
+        return this.couchService.get('_users/_all_docs?include_docs=true',{ withCredentials:true });
+    }
+    
+    getAdmins() {
+        // This is working for my locally setup couchdb instance, but may need to be changed once Vagrant or Docker is setup
+        return this.couchService.get('_node/couchdb@localhost/_config/admins',{ withCredentials:true });
+    }
+    
+    initializeData() {
         Promise.all([
-            this.couchService.get('_users/_all_docs?include_docs=true',{ withCredentials:true }),
-            // This is working for my locally setup couchdb instance, but may need to be changed once Vagrant or Docker is setup
-            this.couchService.get('_node/couchdb@localhost/_config/admins',{ withCredentials:true })
+            this.getUsers(),
+            this.getAdmins()
         ]).then((data) => {
             
             let admins = [];
