@@ -1,4 +1,4 @@
 node_modules/
-
+.vagrant/
 build/
 npm-debug.log
