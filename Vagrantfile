@@ -88,9 +88,21 @@ Vagrant.configure(2) do |config|
     bash nodesource_setup.sh
     apt-get -y install nodejs
     cd /vagrant
+    # node_modules folder breaks when setting up in Windows, so use binding to fix
+    echo "Preparing local node_modules folder…"
+    mkdir /vagrant_node_modules
+    mkdir /vagrant/node_modules
+    chown vagrant:vagrant /vagrant_node_modules
+    mount --bind /vagrant_node_modules /vagrant/node_modules
     echo "npm install"
     echo "npm run watch"
-#    npm install
+    npm install
 #    npm run watch
   SHELL
+  
+  # Run binding on each startup make sure the mount is available on VM restart
+  config.vm.provision "shell", run: "always", inline: <<-SHELL
+    mount --bind /vagrant_node_modules /vagrant/node_modules
+  SHELL
+  
 end
