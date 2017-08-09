@@ -90,19 +90,26 @@ Vagrant.configure(2) do |config|
     cd /vagrant
     # node_modules folder breaks when setting up in Windows, so use binding to fix
     echo "Preparing local node_modules folder…"
-    mkdir /vagrant_node_modules
-    mkdir /vagrant/node_modules
+    mkdir -p /vagrant_node_modules
+    mkdir -p /vagrant/node_modules
     chown vagrant:vagrant /vagrant_node_modules
     mount --bind /vagrant_node_modules /vagrant/node_modules
-    echo "npm install"
-    echo "npm run watch"
     npm install
-#    npm run watch
+    git clone https://github.com/pouchdb/add-cors-to-couchdb.git
+    cd add-cors-to-couchdb
+    npm install
+    node bin.js http://localhost:5984
+    cd ..
+    curl -X PUT http://127.0.0.1:5984/_users
+    curl -X PUT http://127.0.0.1:5984/_replicator
+    curl -X PUT http://127.0.0.1:5984/_global_changes
+    sudo -u vagrant screen -dmS build bash -c 'cd /vagrant; npm run watch'
   SHELL
   
   # Run binding on each startup make sure the mount is available on VM restart
   config.vm.provision "shell", run: "always", inline: <<-SHELL
     mount --bind /vagrant_node_modules /vagrant/node_modules
+    sudo -u vagrant screen -dmS build bash -c 'cd /vagrant; npm run watch'
   SHELL
   
 end
