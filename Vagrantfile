@@ -108,6 +108,7 @@ Vagrant.configure(2) do |config|
   
   # Run binding on each startup make sure the mount is available on VM restart
   config.vm.provision "shell", run: "always", inline: <<-SHELL
+    docker start planet
     mount --bind /vagrant_node_modules /vagrant/node_modules
     sudo -u vagrant screen -dmS build bash -c 'cd /vagrant; npm run watch'
   SHELL
